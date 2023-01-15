@@ -5,6 +5,9 @@ This is a music app that allows users to search for songs, view song's details a
 
 The application also provides authentication and authorization features using Firebase Authentication and JSON Web Tokens.
 
+
+
+
 ## **Features**
 
 - Search and retrieve songs from the lastfm API
@@ -12,6 +15,11 @@ The application also provides authentication and authorization features using Fi
 - Create and manage playlists
 - Add songs to playlists
 - Authentication and Authorization
+
+## **Api documentation with examples**
+https://documenter.getpostman.com/view/19587055/2s8ZDSdQyU
+
+![image](https://i.imgur.com/y1b0Bc0.png)
 
 ## **Getting Started**
 
@@ -68,39 +76,39 @@ npm run dev
 
 ## **Authentication Routes**
 
-- **`POST /api/auth/register`**: Creates a new user with the information provided in the request body. Example: **`POST http://localhost:3000/api/auth/register`**
+- **`POST /api/auth/register`**: Creates a new user with the information provided in the request body. Example: **`POST https://spotify-backend-e2jo.onrender.com/api/auth/register`**
 
-- **`POST /api/auth/login`**: Authenticates an existing user with the email and password provided in the request body. Returns a JSON web token for the user. Example: **`POST http://localhost:3000/api/auth/login`**
+- **`POST /api/auth/login`**: Authenticates an existing user with the email and password provided in the request body. Returns a JSON web token for the user. Example: **`POST https://spotify-backend-e2jo.onrender.com/api/auth/login`**
 
-- **`POST /api/auth/forgot`**: Sends a password reset link to the email provided in the request body. Example: **`POST http://localhost:3000/api/auth/forgot`**
+- **`POST /api/auth/forgot`**: Sends a password reset link to the email provided in the request body. Example: **`POST https://spotify-backend-e2jo.onrender.com/api/auth/forgot`**
 
-- **`GET /api/auth/profile`**: Retrieves the profile of the currently logged in user. Example: **`GET http://localhost:3000/api/auth/profile`**
+- **`GET /api/auth/profile`**: Retrieves the profile of the currently logged in user. Example: **`GET https://spotify-backend-e2jo.onrender.com/api/auth/profile`**
 
 
 ### **Songs**
 
-- **`GET /api/songs`**: Retrieves all the songs from the external API and stores them in the database then returns all the songs from database. Example: **`GET http://localhost:3000/api/songs`**
+- **`GET /api/songs`**: Retrieves all the songs from the external API and stores them in the database then returns all the songs from database. Example: **`GET https://spotify-backend-e2jo.onrender.com/api/songs`**
 
-- **`GET /api/songs/:id`**: Returns the song with the specified ID. Example: **`GET http://localhost:3000/api/songs/5f9d0b9c1e0e9f1b8c8f1f2f`**
+- **`GET /api/songs/:id`**: Returns the song with the specified ID. Example: **`GET https://spotify-backend-e2jo.onrender.com/api/songs/5f9d0b9c1e0e9f1b8c8f1f2f`**
 
-- **`GET /api/songs/search`**: Accepts a query parameter for the search term and returns a list of songs that match the search term. Example: **`GET http://localhost:3000/api/songs/search?q=songname`**
+- **`GET /api/songs/search`**: Accepts a query parameter for the search term and returns a list of songs that match the search term. Example: **`GET https://spotify-backend-e2jo.onrender.com/api/songs/search?q=songname`**
 
 
 ### **Playlists**
 
-- **`POST /api/playlists`**: Creates a new playlist with the information provided in the request body. Example: **`POST http://localhost:3000/api/playlists`**
+- **`POST /api/playlists`**: Creates a new playlist with the information provided in the request body. Example: **`POST https://spotify-backend-e2jo.onrender.com/api/playlists`**
 
-- **`GET /api/playlists`**: Retrieves a list of all playlists in the system. Example: **`GET http://localhost:3000/api/playlists`**
+- **`GET /api/playlists`**: Retrieves a list of all playlists in the system. Example: **`GET https://spotify-backend-e2jo.onrender.com/api/playlists`**
 
-- **`GET /api/playlists/:id`**: Retrieves the playlist with the specified ID. Example: **`GET http://localhost:3000/api/playlists/5f9d0b9c1e0e9f1b8c8f1f2f`**
+- **`GET /api/playlists/:id`**: Retrieves the playlist with the specified ID. Example: **`GET https://spotify-backend-e2jo.onrender.com/api/playlists/5f9d0b9c1e0e9f1b8c8f1f2f`**
 
-- **`PUT /api/playlists/:id`**: Updates the playlist with the specified ID using the information provided in the request body. Example: **`PUT http://localhost:3000/api/playlists/5f9d0b9c1e0e9f1b8c8f1f2f`**
+- **`PUT /api/playlists/:id`**: Updates the playlist with the specified ID using the information provided in the request body. Example: **`PUT https://spotify-backend-e2jo.onrender.com/api/playlists/5f9d0b9c1e0e9f1b8c8f1f2f`**
 
-- **`DELETE /api/playlists/:id`**: Deletes the playlist with the specified ID. Example: **`DELETE http://localhost:3000/api/playlists/5f6d8aa7c1331b5d5f5c5f5f`**
+- **`DELETE /api/playlists/:id`**: Deletes the playlist with the specified ID. Example: **`DELETE https://spotify-backend-e2jo.onrender.com/api/playlists/5f6d8aa7c1331b5d5f5c5f5f`**
 
-- **`POST /api/playlists/:id/songs`**: Adds a song to the playlist with the specified ID. The song information should be provided in the request body. Example: **`POST http://localhost:3000/api/playlists/5f6d8aa7c1331b5d5f5c5f5f/songs`** with a body of **`{ "songId": "5f6d8aa7c1331b5d5f5c5f5f" }`**
+- **`POST /api/playlists/:id/songs`**: Adds a song to the playlist with the specified ID. The song information should be provided in the request body. Example: **`POST https://spotify-backend-e2jo.onrender.com/api/playlists/5f6d8aa7c1331b5d5f5c5f5f/songs`** with a body of **`{ "songId": "5f6d8aa7c1331b5d5f5c5f5f" }`**
 
-- **`DELETE /api/playlists/:id/songs`**: Removes a song from the playlist with the specified ID. The song information should be provided in the request body. Example: **`DELETE http://localhost:3000/api/playlists/5f6d8aa7c1331b5d5f5c5f5f/songs`** with a body of **`{ "songId": "5f6d8aa7c1331b5d5f5c5f5f" }`**
+- **`DELETE /api/playlists/:id/songs`**: Removes a song from the playlist with the specified ID. The song information should be provided in the request body. Example: **`DELETE https://spotify-backend-e2jo.onrender.com/api/playlists/5f6d8aa7c1331b5d5f5c5f5f/songs`** with a body of **`{ "songId": "5f6d8aa7c1331b5d5f5c5f5f" }`**
 
 ## **Built With**
 

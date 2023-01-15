@@ -5,7 +5,7 @@ This is a music app that allows users to search for songs, view song's details a
 
 The application also provides authentication and authorization features using Firebase Authentication and JSON Web Tokens.
 
-
+postman collection link-https://www.postman.com/descent-module-architect-13586242/workspace/spotify-like-backend/collection/19587055-62db2e9f-a570-415c-84b7-de17c194a4b9?action=share&creator=19587055
 
 
 ## **Features**

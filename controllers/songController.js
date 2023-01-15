@@ -1,5 +1,5 @@
 const axios = require("axios");
-const Song = require("../models/song");
+const Song = require("../models/Song");
 const { v4: uuidv4 } = require('uuid');
 
 

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Playlist = require("../models/Playlist");
-const Song = require("../models/song");
+const Song = require("../models/Song");
 
 exports.createPlaylist = (req, res) => {
   const { name, description } = req.body;

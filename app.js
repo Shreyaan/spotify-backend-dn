@@ -31,6 +31,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/playlists', authMiddleware.checkToken, playlistRoutes);
 app.use('/api/songs', authMiddleware.checkToken, songRoutes);
 
+// / home route to welcome users
+app.get('/', (req, res) => {
+    res.status(200).json('Welcome to the Music App API');
+});
+
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

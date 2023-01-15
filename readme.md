@@ -37,7 +37,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```bash
 Copy code
-git clone https://github.com/username/project-name.git
+git clone https://github.com/Shreyaan/spotify-backend-dn.git
 ```
 
 - Install the dependencies
@@ -109,6 +109,35 @@ npm run dev
 - **`POST /api/playlists/:id/songs`**: Adds a song to the playlist with the specified ID. The song information should be provided in the request body. Example: **`POST https://spotify-backend-e2jo.onrender.com/api/playlists/5f6d8aa7c1331b5d5f5c5f5f/songs`** with a body of **`{ "songId": "5f6d8aa7c1331b5d5f5c5f5f" }`**
 
 - **`DELETE /api/playlists/:id/songs`**: Removes a song from the playlist with the specified ID. The song information should be provided in the request body. Example: **`DELETE https://spotify-backend-e2jo.onrender.com/api/playlists/5f6d8aa7c1331b5d5f5c5f5f/songs`** with a body of **`{ "songId": "5f6d8aa7c1331b5d5f5c5f5f" }`**
+
+
+### database schema for three models: Playlist, Song, and User.
+
+- The Playlist model has the following fields:
+    - user_id: a reference to the user who created the playlist
+    - name: the name of the playlist
+    - description: a description of the playlist
+    - songs: an array of references to songs in the playlist
+    - created_at: the date and time when the playlist was created
+    - updated_at: the date and time when the playlist was last updated
+- The Song model has the following fields:
+    - song_id: a unique identifier for the song
+    - name: the name of the song
+    - artist: the name of the artist of the song
+    - album: the name of the album the song belongs to
+    - duration: the duration of the song
+    - preview_url: a url to a preview of the song
+    - created_at: the date and time when the song was added to the database
+    - updated_at: the date and time when the song's information was last updated
+    
+    the Song model has a text index on the name and artist fields.
+    
+- The User model has the following fields:
+    - email: the email of the user
+    - password: the hashed password of the user
+    - role: the role of the user (either 'user' or 'admin')
+    - created_at: the date and time when the user was created
+    - updated_at: the date and time when the user's information was last updated
 
 ## **Built With**
 

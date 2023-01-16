@@ -51,7 +51,9 @@ npm install
 - Create a .env file in the root directory of the project and add the following environment variables:
 
 ```
-Copy code
+SPOTIFY_TOKEN=
+JWT_SECRET=
+MONGO_URI=
 FIREBASE_API_KEY=
 FIREBASE_AUTH_DOMAIN=
 FIREBASE_DATABASE_URL=
@@ -60,10 +62,7 @@ FIREBASE_STORAGE_BUCKET=
 FIREBASE_MESSAGING_SENDER_ID=
 FIREBASE_APP_ID=
 FIREBASE_MEASUREMENT_ID=
-SPOTIFY_CLIENT_ID=
-SPOTIFY_CLIENT_SECRET=
-LASTFM_API_KEY=
-JWT_SECRET=
+LAST_FM=
 ```
 
 - Start the development server

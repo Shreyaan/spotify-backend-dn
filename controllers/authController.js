@@ -33,7 +33,7 @@ exports.signup = (req, res) => {
       });
     })
     .catch((error) => {
-      return res
+      if(!res.headersSent) return res
         .status(500)
         .json({ error: error.code, message: error.message });
     });

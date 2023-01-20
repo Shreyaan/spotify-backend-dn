@@ -20,6 +20,6 @@ exports.checkToken = (req, res, next) => {
         req.user = decoded.user;
         next();
     } catch (error) {
-        return res.status(400).json({ message: 'Invalid token.' });
+        if(!res.headersSent)  return res.status(400).json({ message: 'Invalid token.' });
     }
 };

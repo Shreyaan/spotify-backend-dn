@@ -41,7 +41,7 @@ exports.getAllSongs = async (req, res) => {
 
       return res.json({ message: "songs retrieved successfully", songs: dbSongs });
   } catch (error) {
-      return res.status(500).json({ message: error.message });
+    if(!res.headersSent) return res.status(500).json({ message: error.message });
   }
 };
 

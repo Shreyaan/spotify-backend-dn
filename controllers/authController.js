@@ -67,12 +67,12 @@ exports.login = (req, res) => {
         })
         .catch((error) => {
           console.log(error);
-          return res.status(401).json({ message: "Unauthorized" });
+          if(!res.headersSent) return res.status(401).json({ message: "Unauthorized" });
         });
     })
     .catch((error) => {
       console.log(error);
-      return res.status(401).json({ message: error.message });
+    if(!res.headersSent) return res.status(401).json({ message: error.message });
     });
 };
 
@@ -88,7 +88,7 @@ exports.forgotPassword = (req, res) => {
       return res.status(200).json({ message: "Password reset email sent" });
     })
     .catch((error) => {
-      return res
+      if(!res.headersSent) return res
         .status(500)
         .json({ error: error.code, message: error.message });
     });
@@ -123,6 +123,6 @@ exports.getProfile = (req, res) => {
       return res.staus(200).json(user);
     })
     .catch((error) => {
-      return res.status(500).json({ message: error.message });
+      if(!res.headersSent) return res.status(500).json({ message: error.message });
     });
 };

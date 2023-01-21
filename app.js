@@ -8,6 +8,9 @@ const authRoutes = require('./routes/auth');
 const playlistRoutes = require('./routes/playlists');
 const songRoutes = require('./routes/songs');
 const authMiddleware = require('./middleware/auth');
+// import getSongThumbnail from './controllers/getSongThumbnail';
+const getSongThumbnail = require('./controllers/getSongThumbnail');
+
 
 const firebase = require('./firebase-init');
 
@@ -29,6 +32,8 @@ mongoose.connect(process.env.MONGO_URI, {
 // Use routes
 app.use('/api/auth', authRoutes);
 app.use('/api/playlists', authMiddleware.checkToken, playlistRoutes);
+app.get("/api/thumbnails", getSongThumbnail.getSongThumbnails);
+app.get("/api/cleanup", getSongThumbnail.cleanup)
 app.use('/api/songs', authMiddleware.checkToken, songRoutes);
 
 // / home route to welcome users

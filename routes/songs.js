@@ -5,7 +5,7 @@ const  getSongThumbnail  = require('../controllers/getSongThumbnail');
 
 router.get('/', songController.getAllSongs);
 router.post('/', songController.refreshAllSongs);
-router.get('/thumbnails', getSongThumbnail.getSongThumbnails)
+// router.get('/thumbnails', getSongThumbnail.getSongThumbnails)
 router.get('/search',songController.searchSongs);
 router.get('/:id', songController.getSong);
 

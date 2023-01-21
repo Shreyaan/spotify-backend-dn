@@ -26,6 +26,10 @@ const SongSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    image_url: {
+        type: String,
+        required: false
+    },
     created_at: {
         type: Date,
         default: Date.now

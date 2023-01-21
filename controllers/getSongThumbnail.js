@@ -2,7 +2,6 @@ const puppeteer = require("puppeteer");
 const axios = require("axios");
 const Song = require("../models/Song");
 
-
 let browser;
 
 exports.getSongThumbnails = async (req, res) => {
@@ -16,7 +15,21 @@ exports.getSongThumbnails = async (req, res) => {
       return res.status(404).json({ message: "Thumbnail not found" });
     }
 
-
+    if (songId) {
+      Song.findByIdAndUpdate(
+        songId ,
+        {
+          image_url: thumbnail,
+        },
+        function (err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(result);
+          }
+        }
+      );
+    }
 
     const image = await axios.get(thumbnail, { responseType: "arraybuffer" });
     res.set("Content-Type", "image/jpeg");

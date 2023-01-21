@@ -47,17 +47,27 @@ exports.refreshAllSongs = async (req, res) => {
 
 exports.getAllSongs = async (req, res) => {
   try {
+    // Get the page number and the number of items per page from the query parameters
+    const pageNumber = parseInt(req.query.pageNumber) || 1;
+    const itemsPerPage = parseInt(req.query.itemsPerPage) || 10;
+
     // Retrieve all songs from the database
-    const dbSongs = await Song.find({});
+    const totalItems = await Song.countDocuments();
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const dbSongs = await Song.find({}).skip((pageNumber - 1) * itemsPerPage).limit(itemsPerPage);
+
     return res.json({
       message: "songs retrieved successfully",
       songs: dbSongs,
+      totalPages: totalPages,
+      totalItems: totalItems
     });
   } catch (error) {
     if (!res.headersSent)
       return res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.getSong = (req, res) => {
   // Get the song with the specified ID from the MongoDB

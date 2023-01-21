@@ -36,7 +36,11 @@ exports.getSongThumbnails = async (req, res) => {
     if (returned) return;
 
     if (!browser) {
-      browser = await puppeteer.launch({ headless: true });
+      browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox','--disable-setuid-sandbox']
+      })
+      
     }
     const thumbnail = await getThumbnail(songObj.preview_url, browser);
     if (!thumbnail) {

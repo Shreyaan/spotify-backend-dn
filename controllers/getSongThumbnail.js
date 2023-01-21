@@ -65,7 +65,10 @@ exports.getSongThumbnails = async (req, res) => {
 
     await axiosImage(thumbnail, res);
   } catch (err) {
-    if(!res.headersSent) res.status(500).json({ message: err.message });
+    if(!res.headersSent) axiosImage(
+        "https://www.digitalmesh.com/blog/wp-content/uploads/2020/05/404-error.jpg",
+        res
+      )
     console.log(err);
   }
 };

@@ -6,18 +6,46 @@ let browser;
 
 exports.getSongThumbnails = async (req, res) => {
   try {
-    const { url, songId } = req.query;
+    const { songId } = req.query;
+
+    let songObj;
+    let returned = false;
+
+   await Song.findById(songId).then((song) => {
+      if (!song){
+        returned = true;
+       return axiosImage(
+          "https://www.digitalmesh.com/blog/wp-content/uploads/2020/05/404-error.jpg",
+          res
+        );}
+
+      if (song.image_url) {
+        returned = true;
+        if(!res.headersSent) return axiosImage(song.image_url, res);
+      }
+      if (!song?.preview_url) {
+        returned = true;
+        return axiosImage(
+          "https://www.digitalmesh.com/blog/wp-content/uploads/2020/05/404-error.jpg",
+          res
+        );}
+
+      songObj = song;
+    });
+
+    if (returned) return;
+
     if (!browser) {
       browser = await puppeteer.launch({ headless: true });
     }
-    const thumbnail = await getThumbnail(url, browser);
+    const thumbnail = await getThumbnail(songObj.preview_url, browser);
     if (!thumbnail) {
-      return res.status(404).json({ message: "Thumbnail not found" });
+        if(!res.headersSent)  return res.status(404).json({ message: "Thumbnail not found" });
     }
 
     if (songId) {
       Song.findByIdAndUpdate(
-        songId ,
+        songId,
         {
           image_url: thumbnail,
         },
@@ -29,15 +57,20 @@ exports.getSongThumbnails = async (req, res) => {
           }
         }
       );
-    }
+    } 
 
-    const image = await axios.get(thumbnail, { responseType: "arraybuffer" });
-    res.set("Content-Type", "image/jpeg");
-    res.send(Buffer.from(image.data, "binary"));
+    await axiosImage(thumbnail, res);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if(!res.headersSent) res.status(500).json({ message: err.message });
+    console.log(err);
   }
 };
+
+async function axiosImage(thumbnail, res) {
+  const image = await axios.get(thumbnail, { responseType: "arraybuffer" });
+  res.set("Content-Type", "image/jpeg");
+  res.send(Buffer.from(image.data, "binary"));
+}
 
 async function getThumbnail(url, browserInstance) {
   try {

@@ -2,7 +2,7 @@ const axios = require("axios");
 const Song = require("../models/Song");
 const { v4: uuidv4 } = require("uuid");
 
-exports.getAllSongs = async (req, res) => {
+exports.refreshAllSongs = async (req, res) => {
   try {
     console.log("Refreshing songs...");
     const response = await axios.get(
@@ -45,7 +45,7 @@ exports.getAllSongs = async (req, res) => {
   }
 };
 
-exports.JustSongs = async (req, res) => {
+exports.getAllSongs = async (req, res) => {
   try {
     // Retrieve all songs from the database
     const dbSongs = await Song.find({});

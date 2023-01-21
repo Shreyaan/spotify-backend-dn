@@ -1,26 +1,21 @@
 const puppeteer = require('puppeteer');
-const request = require('request');
+const axios = require('axios');
 
 let browser;
 
 exports.getSongThumbnails = async (req, res) => {
-    const { url } = req.query;
-    console.log(url);
     try {
+        const { url } = req.query;
         if (!browser) {
-            browser = await puppeteer.launch({ headless: true });
+            browser = await puppeteer.launch({});
         }
         const thumbnail = await getThumbnail(url, browser);
         if (!thumbnail) {
             return res.status(404).json({ message: "Thumbnail not found" });
         }
-        request.get(thumbnail, { encoding: null }, (error, response, body) => {
-            if (error) {
-                return res.status(500).json({ message: error.message });
-            }
-            res.set('Content-Type', 'image/jpeg');
-            res.send(body);
-        });
+        const image = await axios.get(thumbnail, { responseType: 'arraybuffer' });
+        res.set('Content-Type', 'image/jpeg');
+        res.send(Buffer.from(image.data, 'binary'));
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

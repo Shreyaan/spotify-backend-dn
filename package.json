@@ -20,6 +20,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.3",
+    "puppeteer": "^19.5.2",
+    "request": "^2.88.2",
     "uuid": "^9.0.0"
   }
 }

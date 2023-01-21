@@ -9,7 +9,7 @@ exports.refreshAllSongs = async (req, res) => {
       `https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=${process.env.LAST_FM}&format=json`
     );
     const songs = response.data.tracks.track;
-    console.log(songs);
+    // console.log(songs);
 
     const songPromises = songs.map(async (song) => {
       const existingSong = await Song.findOne({ song_id: song.mbid });
@@ -86,3 +86,5 @@ exports.searchSongs = (req, res) => {
     return res.json(songs);
   });
 };
+
+

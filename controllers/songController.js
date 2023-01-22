@@ -44,6 +44,7 @@ exports.refreshAllSongs = async (req, res) => {
   } catch (error) {
     if (!res.headersSent)
       return res.status(500).json({ message: error.message });
+    else{throw new Error("Error")}
   }
 };
 
@@ -75,6 +76,7 @@ exports.getAllSongs = async (req, res) => {
   } catch (error) {
     if (!res.headersSent)
       return res.status(500).json({ message: error.message });
+    else{throw new Error("Error")}
   }
 };
 
@@ -84,7 +86,7 @@ exports.getSong = (req, res) => {
   Song.findById(req.params.id, (err, song) => {
     if (err) return res.status(500).json({ message: err.message });
     if (!song) return res.status(404).json({ message: "Song not found" });
-    return res.json(song);
+    else{return res.json(song)}
   });
 };
 
@@ -93,7 +95,7 @@ exports.searchSongs = (req, res) => {
   Song.find({ $text: { $search: req.query.q } }, (err, songs) => {
     if (err) return res.status(500).json({ message: err.message });
     if (!songs) return res.status(404).json({ message: "No songs found" });
-    return res.json(songs);
+    else{return res.json(songs)}
   });
 };
 

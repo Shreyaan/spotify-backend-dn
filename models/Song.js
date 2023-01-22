@@ -24,7 +24,8 @@ const SongSchema = new mongoose.Schema({
     },
     preview_url: {
         type: String,
-        required: false
+        required: false,
+        unique: true
     },
     image_url: {
         type: String,

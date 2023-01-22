@@ -16,6 +16,9 @@ postman collection link-https://www.postman.com/descent-module-architect-1358624
 - Create and manage playlists
 - Add songs to playlists
 - Authentication and Authorization
+- Pagination
+- made an endpoint to dynamically generate preview images for songs using puppeteer(takes 500ms to send response with image) using inspiration from github og image generation
+
 
 ## **Api documentation with examples**
 https://documenter.getpostman.com/view/19587055/2s8ZDSdQyU
